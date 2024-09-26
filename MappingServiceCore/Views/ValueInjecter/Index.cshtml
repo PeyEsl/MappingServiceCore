@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MappingServiceCore.Models.ViewModels.PersonViewModel>
+
+@{
+    ViewData["Title"] = "Value Injecter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var successMessage = ViewData["SuccessMessage"] as string;
+    var errorMessage = ViewData["ErrorMessage"] as string;
+}
+
+<div dir="rtl">
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="text-center">
+            <div class="alert alert-success">
+                @successMessage
+            </div>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="text-center">
+            <div class="alert alert-danger">
+                @errorMessage
+            </div>
+        </div>
+    }
+    <h1 class="text-center">نگاشت تزريق ارزش</h1>
+    <hr />
+    <div class="clearfix">
+        <a asp-action="Create" class="btn btn-success rounded-pill float-end px-5">جدید</a>
+        <form asp-action="Index" class="d-flex float-start" method="get">
+            <input class="form-control mx-2" type="text" name="searchQuery" placeholder="جستجو" value="@ViewData["CurrentFilter"]">
+            <button class="btn btn-primary" type="submit">جستجو</button>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    نام کامل
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th class="text-center">عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var person in Model)
+                {
+                    <tr>
+
+                        <td class="text-center">
+                            @string.Format($"{person.FirstName} {person.LastName}")
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => person.PhoneNumber)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => person.CreateDate)
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@person.Id">ویرایش</a> |
+                            <a asp-action="Details" asp-route-id="@person.Id">جزئیات</a> |
+                            <a asp-action="Delete" asp-route-id="@person.Id">حذف</a>
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <a asp-controller="Home" asp-action="Mapping">بازگشت به لیست نگاشت</a>
+    </div>
+</div>

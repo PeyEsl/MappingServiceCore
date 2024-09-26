@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Mapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var errorMessage = ViewData["ErrorMessage"] as string;
+}
+
+<h1 class="text-center">نگاشت</h1>
+<hr />
+<div dir="rtl">
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="text-center">
+            <div class="alert alert-danger">
+                @errorMessage
+            </div>
+        </div>
+    }
+    <dl class="row">
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="Manual" asp-action="Index">نگاشت دستی<br />(Manual Mapping)</a>
+        </dt>
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="AutoMapper" asp-action="Index">نگاشت با AutoMapper</a>
+        </dt>
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="ValueInjecter" asp-action="Index">نگاشت با ValueInjecter</a>
+        </dt>
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="Mapster" asp-action="Index">نگاشت با Mapster</a>
+        </dt>
+    </dl>
+    <br />
+    <dl class="row">
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="ExpressMapper" asp-action="Index">نگاشت با ExpressMapper</a>
+        </dt>
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="LINQSelect" asp-action="Index">نگاشت با انتخاب LINQ</a>
+        </dt>
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="ObjectDictionary" asp-action="Index">نگاشت شیء به دیکشنری<br />(Object to Dictionary Mapping)</a>
+        </dt>
+        <dt class="col-sm-3 text-center">
+            <a asp-controller="ObjectJSON" asp-action="Index">نگاشت شیء به JSON و بالعکس<br />(Object to JSON & JSON to Object Mapping)</a>
+        </dt>
+    </dl>
+</div>

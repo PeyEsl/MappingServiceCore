@@ -1,0 +1,46 @@
+﻿@model MappingServiceCore.Models.ViewModels.PersonViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div dir="rtl">
+    <h1 class="text-center">حذف</h1>
+    <h3>آیا از حذف اطمینان دارید؟</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+            <dd class="col-sm-10">
+                @string.Format(DateTime.Parse(Model.CreateDate!).ToLongDateString())
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="حذف" class="btn btn-danger rounded-pill px-3" /> |
+            <a asp-action="Index">بازگشت به لیست</a>
+        </form>
+    </div>
+</div>
